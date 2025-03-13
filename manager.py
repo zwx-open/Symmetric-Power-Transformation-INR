@@ -123,7 +123,7 @@ class ParamManager(object):
             "inverse",
             "rpp",
             "box_cox",
-            
+
             "sym_power",
             
         ]
@@ -167,8 +167,9 @@ class ParamManager(object):
         else:
             self.p.transform = param_set
 
-        self.p.input_path = DEMO_IMG
-        # self.p.multi_data = STORE_TRUE
+        #self.p.input_path = DEMO_IMG
+        self.p.input_path = DIV2K_TEST
+        self.p.multi_data = STORE_TRUE
 
 
     
