@@ -66,8 +66,9 @@ if __name__ == "__main__":
         "min_max",
         "z_score",
         "sym_power",
+        "box_cox"
     ]
-    gpu_list = [0, 1, 2]
+    gpu_list = [0, 1, 2, 3]
 
     # param_sets = [""]
     # gpu_list = [0]

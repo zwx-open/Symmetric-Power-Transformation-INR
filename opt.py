@@ -116,8 +116,6 @@ class Opt(object):
         self.parser.add_argument(
             "--scale", type=float, default=30, help="simga (wire, guass)"
         )
-        # inital weight (SIREN) # todo: 后面再说
-        self.parser.add_argument("--use_default_intial_weight", action="store_true")
 
     def add_transform(self):
         self.parser.add_argument(

@@ -99,12 +99,12 @@ class ParamManager(object):
     def _set_exp_000(self, param_set):
         self._tag = "000_demo"        
         self._exp = "demo"
-        self.p.transform = "min_max"
+        self.p.transform = "sym_power"
 
         self.p.input_path = DEMO_IMG
 
-        self.p.num_epochs = 100
-        self.p.log_epoch = 50
+        # self.p.num_epochs = 100
+        # self.p.log_epoch = 50
 
 
 
@@ -114,13 +114,14 @@ class ParamManager(object):
             "min_max",
             "z_score",
             "sym_power",
+            "box_cox"
         ]
         
         self._exp = param_set
         self.p.transform = param_set
 
-        self.p.input_path = DIV2K_TEST
-        self.p.multi_data = STORE_TRUE
+        self.p.input_path = DEMO_IMG
+        # self.p.multi_data = STORE_TRUE
 
 
     

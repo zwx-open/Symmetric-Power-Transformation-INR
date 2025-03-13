@@ -1,0 +1,35 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "SYM-TRANS",
+            "type": "python",
+            "request": "launch",
+            "program": "main.py", // file to run
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}", //current working directory 
+            "args": [
+                "--model_type",
+                "siren",
+                "--input_path",
+                "./data/div2k/test_data/00.png",
+                "--eval_lpips",
+                "--transform",
+                "sym_power",
+                "--tag",
+                "demo",
+                "--lr",
+                "0.0001",
+                "--up_folder_name",
+                "000_demo",
+            ],
+            "env": {
+                "CUDA_VISIBLE DEVICES": "0",
+            },
+        },
+    ]
+}

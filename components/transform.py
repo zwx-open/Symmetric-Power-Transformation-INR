@@ -2,6 +2,8 @@ import torch
 import numpy as np
 from scipy import stats
 
+from util.logger import log
+
 class Transform(object):
     def __init__(self, args):
 
@@ -111,6 +113,10 @@ class Transform(object):
         normed = (data - (_min - _left_shift_len)) / (_max - _min + _shift_len)  # [0,1]
         normed = torch.pow(normed, gamma)
         normed = self._encode_shift_scale(normed)
+
+        log.inst.info(f"gammma: {gamma}")
+        log.inst.info(f"_left_shift_len: {_left_shift_len}")
+        log.inst.info(f"_right_shift_len: {_right_shift_len}")
         
         return [_min, _max, gamma, _left_shift_len, _shift_len], normed
     
@@ -172,7 +178,7 @@ class Transform(object):
         return new_gamma
 
     def _box_cox(self, data: torch.tensor):
-        ### + shift → boxcox → min-max → zero_mean
+        ### + shift → boxcox → min-max → zero_mean        
         data = data + self.args.box_shift * 256
         _shape = data.shape
         data, _lambda = stats.boxcox(data.flatten())

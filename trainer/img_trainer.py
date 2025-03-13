@@ -4,7 +4,9 @@ from util.tensorboard import writer
 from util import io
 
 from trainer.base_trainer import BaseTrainer
-from components.ssim import compute_ssim_loss
+
+'''we used </255> version of ssim in this paper'''
+from components.ssim_ import compute_ssim_loss
 from components.lpips import Calc_LPIPS
 
 import numpy as np
@@ -33,13 +35,12 @@ class ImageTrainer(BaseTrainer):
 
     def _encode_img(self, img):
         img = torch.clamp(img, min=0, max=255)
-        img = img / 255.0
+        img = img.to(torch.float32)
         img = self.transform.tranform(img)
         return img
 
     def _decode_img(self, data):
         data = self.transform.inverse(data)
-        data = data * 255.0
         data = torch.clamp(data, min=0, max=255)
         return data
 
@@ -48,9 +49,9 @@ class ImageTrainer(BaseTrainer):
         img = self._encode_img(img)
 
         # @test inverse
-        # r_img = self._decode_img(img)
-        # psnr_ = self.compute_psnr(r_img, self.input_img)
-        # print('psnr_: ', psnr_)
+        r_img = self._decode_img(img)
+        psnr_ = self.compute_psnr(r_img, self.input_img)
+        print('psnr_: ', psnr_)
         # exit()
 
         gt = img.permute(1, 2, 0).reshape(-1, self.C)  # h*w, C
@@ -90,7 +91,7 @@ class ImageTrainer(BaseTrainer):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-            # scheduler.step()
+            scheduler.step()
 
             torch.cuda.synchronize()
             log.pause_timer("train")
