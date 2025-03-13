@@ -30,7 +30,6 @@ class ImageTrainer(BaseTrainer):
         path = self.args.input_path
         img = torch.from_numpy(imageio.imread(path)).permute(2, 0, 1)  # c,h,w
         self.input_img = img
-        # self.supervision.set_gt(img)
         self.C, self.H, self.W = img.shape
 
     def _encode_img(self, img):
@@ -44,14 +43,27 @@ class ImageTrainer(BaseTrainer):
         data = torch.clamp(data, min=0, max=255)
         return data
 
+    def _parse_rpp_inverse(self):
+        
+        if self.args.rpp: 
+            pixels = self.input_img.reshape(self.C, -1)
+            indices = torch.randperm(pixels.size(1))
+            permuted_pixels = pixels[:, indices]
+            permuted_img = permuted_pixels.reshape(self.C, self.H, self.W)
+            self.input_img = permuted_img
+
+        if self.args.inverse:
+            self.input_img = 255. - self.input_img 
+
     def _get_data(self):
+        self._parse_rpp_inverse()
         img = self.input_img
         img = self._encode_img(img)
 
         # @test inverse
-        r_img = self._decode_img(img)
-        psnr_ = self.compute_psnr(r_img, self.input_img)
-        print('psnr_: ', psnr_)
+        # r_img = self._decode_img(img)
+        # psnr_ = self.compute_psnr(r_img, self.input_img)
+        # print('psnr_: ', psnr_)
         # exit()
 
         gt = img.permute(1, 2, 0).reshape(-1, self.C)  # h*w, C

@@ -102,7 +102,6 @@ class ParamManager(object):
         self.p.transform = "sym_power"
 
         self.p.input_path = DEMO_IMG
-
         # self.p.num_epochs = 100
         # self.p.log_epoch = 50
 
@@ -111,14 +110,62 @@ class ParamManager(object):
     def _set_exp_001(self, param_set):
         self._tag = "001_trans"
         self._param_set_list = [
-            "min_max",
+            "01_norm",
             "z_score",
+
+            "gamma_0.5",
+            "gamma_2.0",
+
+            "scale_0.5",
+            "scale_1.0",
+            "scale_2.0",
+
+            "inverse",
+            "rpp",
+            "box_cox",
+            
             "sym_power",
-            "box_cox"
+            
         ]
         
         self._exp = param_set
-        self.p.transform = param_set
+       
+
+        if param_set == "01_norm":
+            self.p.transform = "min_max"
+            self.p.trans_shift = 0
+            self.p.trans_scale = 1
+        
+        elif param_set == "gamma_0.5":
+            self.p.transform = "sym_power"
+            self.p.gamma_trans = 0.5
+
+        elif param_set == "gamma_2.0":
+            self.p.transform = "sym_power"
+            self.p.gamma_trans = 2.0
+        
+        elif param_set == "scale_0.5":
+            self.p.transform = "min_max"
+            self.p.trans_scale = 2 * 0.5
+        
+        elif param_set == "scale_1.0":
+            self.p.transform = "min_max"
+            self.p.trans_scale = 2 * 1.0
+        
+        elif param_set == "scale_2.0":
+            self.p.transform = "min_max"
+            self.p.trans_scale = 2 * 2.0
+        
+        elif param_set == "inverse":
+            self.p.inverse = STORE_TRUE
+            self.p.transform = "min_max"
+
+        elif param_set == "rpp":
+            self.p.rpp = STORE_TRUE
+            self.p.transform = "min_max"
+        
+        else:
+            self.p.transform = param_set
 
         self.p.input_path = DEMO_IMG
         # self.p.multi_data = STORE_TRUE

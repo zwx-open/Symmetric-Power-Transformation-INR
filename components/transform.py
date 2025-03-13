@@ -13,6 +13,7 @@ class Transform(object):
         self.method = self.args.transform
     
     def tranform(self, data):
+        
         if self.method == "min_max":
             _min = torch.min(data)
             _max = torch.max(data)
@@ -33,9 +34,6 @@ class Transform(object):
         elif self.method == "box_cox":
             _min, _max, _lambda, normed = self._box_cox(data)
             self.inverse_map[self.method] = (_min, _max, _lambda)
-        
-        elif self.method == "gamma":
-            raise NotImplementedError
 
         else: 
             raise NotImplementedError
@@ -63,8 +61,6 @@ class Transform(object):
             r_data = self._inverse_box_cox(
                 _min, _max, _lambda, normed
             )
-        elif self.method == "gamma":
-            raise NotImplementedError
         else: 
             raise NotImplementedError
         
@@ -96,7 +92,6 @@ class Transform(object):
         if gamma > 1: gamma = min(boundary, gamma)
         else: gamma = max(1/boundary, gamma)
 
-
         if self.args.pn_buffer < 0: # adaptive
             _alpha_len = int(self.args.pn_alpha * 256)
             left_alpha_sum = pdf[:_alpha_len].sum()
@@ -109,6 +104,12 @@ class Transform(object):
             _right_shift_len = (_max - _min) * self.args.pn_buffer
         
         _shift_len = _left_shift_len + _right_shift_len
+
+        ## gamma transformation
+        if self.args.gamma_trans >= 0:
+            gamma = self.args.gamma_trans
+            _left_shift_len = _right_shift_len = _shift_len = 0
+
 
         normed = (data - (_min - _left_shift_len)) / (_max - _min + _shift_len)  # [0,1]
         normed = torch.pow(normed, gamma)

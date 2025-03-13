@@ -3,6 +3,7 @@ from manager import ParamManager
 import subprocess
 import numpy as np
 import math
+from config import PAMRAM_SET 
 
 
 def run_single(exp_num):
@@ -60,18 +61,8 @@ def run_tasks(exp_num, param_sets, gpu_list):
 
 if __name__ == "__main__":
 
-    # todo： → dict manage
+    exp = "001"
+    param_sets = PAMRAM_SET[exp]
+    gpu_list = [i for i in range(len(param_sets))]
     
-    param_sets = [
-        "min_max",
-        "z_score",
-        "sym_power",
-        "box_cox"
-    ]
-    gpu_list = [0, 1, 2, 3]
-
-    # param_sets = [""]
-    # gpu_list = [0]
-
-
-    run_tasks("001", param_sets, gpu_list)
+    run_tasks(exp, param_sets, gpu_list)

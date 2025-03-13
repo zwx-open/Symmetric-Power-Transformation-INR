@@ -173,7 +173,7 @@ class Opt(object):
         self.parser.add_argument("--gamma_boundary", type=float, default=5)
 
         self.parser.add_argument(
-            "--gamma", type=float, default=1.0, help="gamma for power normalization"
+            "--gamma_trans", type=float, default=-1.0, help="reset gamma for gamma transformation; setting to -1 indicates disabling."
         )
 
         self.parser.add_argument(
