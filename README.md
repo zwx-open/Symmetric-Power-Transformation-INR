@@ -18,7 +18,7 @@ This is the official PyTorch implementation of Enhancing Implicit Neural Represe
   <img src="./assets/intro.png" style="width:90%;">
 </p>
 
-**Abstract.** We propose symmetric power transformation to enhance the capacity of Implicit Neural Representation (INR) from the perspective of data transformation. Unlike prior work utilizing random permutation or index rearrangement, our method features a reversible operation that does not require additional storage consumption. Specifically, we first investigate the characteristics of data that can benefit the training of INR, proposing the Range-Defined Symmetric Hypothesis, which posits that specific range and symmetry can improve the expressive ability of INR. Based on this hypothesis, we propose a nonlinear symmetric power transformation to achieve both range-defined and symmetric properties simultaneously. We use the power coefficient to redistribute data to approximate symmetry within the target range. To improve the robustness of the transformation, we further design deviation-aware calibration and adaptive soft boundary to address issues of extreme deviation boosting and continuity breaking. Extensive
+**Abstract.** We propose **symmetric power transformation** to enhance the capacity of Implicit Neural Representation (INR) from the perspective of data transformation. Unlike prior work utilizing random permutation or index rearrangement, our method features a reversible operation that does not require additional storage consumption. Specifically, we first investigate the characteristics of data that can benefit the training of INR, proposing the Range-Defined Symmetric Hypothesis, which posits that specific range and symmetry can improve the expressive ability of INR. Based on this hypothesis, we propose a nonlinear symmetric power transformation to achieve both range-defined and symmetric properties simultaneously. We use the power coefficient to redistribute data to approximate symmetry within the target range. To improve the robustness of the transformation, we further design deviation-aware calibration and adaptive soft boundary to address issues of extreme deviation boosting and continuity breaking. Extensive
 experiments are conducted to verify the performance of the proposed method, demonstrating that our transformation can reliably improve INR compared with other data transformations. We also conduct 1D audio, 2D image and 3D video fitting tasks to demonstrate the effectiveness and applicability of our method.
 
 
@@ -28,7 +28,7 @@ experiments are conducted to verify the performance of the proposed method, demo
 git clone https://github.com/zwx-open/Symmetric-Power-Transformation-INR.git
 cd Symmetric-Power-Transformation-INR
 ```
-## Conda Enviroment
+## Enviroment Setup
 todo;
 
 > **Tested Enviroments**: 
@@ -75,8 +75,8 @@ python run.py
 
 # Introduction to Important Arguments
 
-# Reproducing Results from the Paper
-## How to run experiments in this repo?
+# Code Execution
+## How to run experiments in this repo? 
 Please update code in `run.py` (~line 62) to run different experiments:
 The defualt is running demo (exp_000):
 ```py
@@ -137,9 +137,49 @@ def _set_exp_999(self, param_set):
         self.p.xxx = xxx2
 ```
 
-## Run with argparser
-If you want to run the code in a more free way, please reference `debug.py`:
-todo;
+## More Flexible Way
+If you prefer a more flexible way to run this code, please refer to `debug.py`:
+```py
+'''flexiblely set all arugments in opt.py'''
+def debug(use_cuda=0):
+    args = [
+        "--model_type",
+        "siren",
+        "--input_path",
+        "./data/div2k/test_data/00.png",
+        "--eval_lpips",
+        "--transform",
+        "sym_power",
+        "--tag",
+        "debug_demo",
+        "--lr",
+        "0.0001",
+        "--up_folder_name",
+        "000_demo", 
+    ]
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(use_cuda) 
+    script = "python main.py " + " ".join(args)
+    print(f"Running: {script}")
+    os.system(script)
+```
+
+Then running `debug.py`:
+```python
+python debug.py
+```
+
+# Reproducing Results from the Paper
+
+## Comparison of Different Transformations (Table 1)
+<p align="center">
+  <img src="./assets/tab1.png" style="width:90%;">
+</p>
+
+The setting of this experiments is correspoinding to `_set_exp_001()` in `manager.py`. Please run `exp_001` following [How to run experiments in this repo](#How-to-run-experiments-in-this-repo?).
+
+Chekckpoints can be found in [here](/) (`log/001_trans`).
+
+
 
 # Citation
 Please consider leaving a ⭐ and citing our paper if you find this project helpful:
