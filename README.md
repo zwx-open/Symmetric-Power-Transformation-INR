@@ -1,6 +1,6 @@
 # Enhancing Implicit Neural Representations via Symmetric Power Transformation
 
-### [Project Page]() | [Paper](https://arxiv.org/abs/2412.09213) | [Code](https://github.com/zwx-open/Symmetric-Power-Transformation-INR) | [Checkpoints]()
+### [Project Page](https://weixiang-zhang.github.io/proj-symtrans/) | [Paper](https://arxiv.org/abs/2412.09213) | [Code](https://github.com/zwx-open/Symmetric-Power-Transformation-INR) | [Checkpoints](https://drive.google.com/drive/folders/1VMtc84T4UsgoAluNKtOg-qoJXb1Z27q0?usp=drive_link)
 
 [Weixiang Zhang](https://weixiang-zhang.github.io/),
 [Shuzhao Xie](https://shuzhaoxie.github.io/),
@@ -72,8 +72,6 @@ python run.py
     ├── recorder.py
     └── tensorboard.py
 ```
-
-# Introduction to Important Arguments
 
 # Code Execution
 ## How to run experiments in this repo? 
@@ -177,7 +175,7 @@ python debug.py
 
 The setting of this experiments is correspoinding to `_set_exp_001()` in `manager.py`. Please run `exp_001` following [How to run experiments in this repo](#How-to-run-experiments-in-this-repo?).
 
-Chekckpoints can be found in [here](/) (`log/001_trans`).
+Chekckpoints can be found in [here](https://drive.google.com/drive/folders/1VMtc84T4UsgoAluNKtOg-qoJXb1Z27q0?usp=drive_link) (`log/001_trans`).
 
 
 
