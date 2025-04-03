@@ -61,7 +61,7 @@ def run_tasks(exp_num, param_sets, gpu_list):
 
 if __name__ == "__main__":
 
-    exp = "000"
+    exp = "001"
     param_sets = PAMRAM_SET[exp]
     gpu_list = [i for i in range(len(param_sets))]
     
