@@ -7,19 +7,19 @@ from config import PAMRAM_SET
 
 
 def run_single(exp_num):
-    #### RUNING A DEM
+    #### RUNING A DEMO
     pm = ParamManager(idx=0, exp_num=exp_num)
     pm.p.up_folder_name = "debug"
-    pm.p.num_epochs = 500
-    pm.p.log_epoch = 50
+    pm.p.num_epochs = 5000
+    pm.p.log_epoch = 500
     # test dataset
-    # pm.p.input_path = "/home/wxzhang/projects/coding4paper/data"
+    pm.p.input_path = "./data/div2k/test_data/00.png"
     # pm.p.multi_data = None
 
     # pm.p.transform = "sym_power"
-    pm.p.signal_type = "series"
-    pm.p.hidden_layers = 1
-    pm.p.hidden_features = 64
+    pm.p.signal_type = "image"
+    pm.p.hidden_layers = 3
+    pm.p.hidden_features = 256
     use_cuda = 0
     cmd_str = pm.export_cmd_str(use_cuda=[use_cuda])
     print(f"Running: {cmd_str}")
