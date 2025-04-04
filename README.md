@@ -1,4 +1,4 @@
-# Enhancing Implicit Neural Representations via Symmetric Power Transformation
+# [AAAI'2025] Enhancing Implicit Neural Representations via Symmetric Power Transformation
 
 ### [Project Page](https://weixiang-zhang.github.io/proj-symtrans/) | [Paper](https://arxiv.org/abs/2412.09213) | [Code](https://github.com/zwx-open/Symmetric-Power-Transformation-INR) | [Checkpoints](https://drive.google.com/drive/folders/1VMtc84T4UsgoAluNKtOg-qoJXb1Z27q0?usp=drive_link)
 
@@ -29,8 +29,6 @@ git clone https://github.com/zwx-open/Symmetric-Power-Transformation-INR.git
 cd Symmetric-Power-Transformation-INR
 ```
 ## Enviroment Setup
-todo;
-
 > **Tested Enviroments**: 
 </br> - Ubuntu 20.04 with PyTorch 1.12.1 & CUDA 11.3.1 on RTX 3090
 
@@ -177,7 +175,17 @@ The setting of this experiments is correspoinding to `_set_exp_001()` in `manage
 
 Chekckpoints can be found in [here](https://drive.google.com/drive/folders/1VMtc84T4UsgoAluNKtOg-qoJXb1Z27q0?usp=drive_link) (`log/001_trans`).
 
-
+# Additional Related Research
+Welcome to explore our related research. The source code for all works has been available.
+- (*CVPR'2025*) EVOS: Efficient Implicit Neural Training via EVOlutionary Selector| 
+[[paper]](https://arxiv.org/pdf/2412.10153) | 
+[[project]](https://weixiang-zhang.github.io/proj-evos/) | 
+[[code]](https://github.com/zwx-open/EVOS-INR) | 
+- (*ICME'2025*) Expansive Supervision for Neural Radiance Fields| 
+[[paper]](https://arxiv.org/pdf/2412.10153) | 
+[[code]](https://github.com/zwx-open/Expansive-Supervision) | 
+- Recent Progress of Implicit Neural Representations | 
+[[code]](https://github.com/zwx-open/Recent-Progress-of-INR)
 
 # Citation
 Please consider leaving a ⭐ and citing our paper if you find this project helpful:
