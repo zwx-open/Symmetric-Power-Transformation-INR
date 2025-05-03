@@ -191,10 +191,17 @@ Welcome to explore our related research. The source code for all works has been 
 Please consider leaving a ⭐ and citing our paper if you find this project helpful:
 
 ```
-@article{sym-power-trans-inr,
-  title={Enhancing Implicit Neural Representations via Symmetric Power Transformation},
-  author={Zhang, Weixiang and Xie, Shuzhao and Ren, Chengwei and Ge, Shijia and Wang, Mingzi and Wang, Zhi},
-  journal={arXiv preprint arXiv:2412.09213},
-  year={2024}
+@inproceedings{sym-power-trans-inr,
+  author       = {Weixiang Zhang and
+                  Shuzhao Xie and
+                  Chengwei Ren and
+                  Shijia Ge and
+                  Mingzi Wang and
+                  Zhi Wang},
+  title        = {Enhancing Implicit Neural Representations via Symmetric Power Transformation},
+  booktitle    = {{AAAI}},
+  pages        = {10157--10165},
+  publisher    = {{AAAI} Press},
+  year         = {2025}
 }
 ```
